@@ -20,7 +20,7 @@ const footerLinks = [
   },
   {
     title: "GitHub",
-    href: "https://github.com/TejasS1233",
+    href: "https://github.com/Chethana45",
   },
 ];
 
@@ -96,12 +96,12 @@ const Footer = () => {
           <span className="text-muted-foreground">
             &copy; {new Date().getFullYear()}{" "}
             <a
-              href="https://github.com/TejasS1233"
+              href="https://github.com/Chethana45"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-foreground transition-colors"
             >
-              TejasS1233
+              Chethana45
             </a>
             . All rights reserved.
           </span>
