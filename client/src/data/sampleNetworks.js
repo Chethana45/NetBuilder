@@ -1,0 +1,203 @@
+export const SAMPLE_NETWORKS = {
+  basicLAN: {
+    name: "Basic LAN Network",
+    description: "A simple local area network with router, switch, and connected devices",
+    devices: [
+      {
+        id: "router-001",
+        type: "router",
+        name: "Main-Router",
+        position: { x: 400, y: 150 },
+        config: {
+          ip: "10.0.0.1",
+          subnet: "255.255.255.0",
+          gateway: "",
+          ports: 4,
+          status: "active",
+          routingTable: [],
+          macTable: null,
+          interfaces: ["eth0", "eth1"],
+        },
+        packets: [],
+        stats: { packetsReceived: 0, packetsSent: 0, errors: 0 },
+      },
+      {
+        id: "switch-001",
+        type: "switch",
+        name: "Core-Switch",
+        position: { x: 400, y: 300 },
+        config: {
+          ip: "",
+          subnet: "",
+          gateway: "",
+          ports: 8,
+          status: "active",
+          routingTable: null,
+          macTable: [],
+          interfaces: ["port1", "port2", "port3", "port4"],
+        },
+        packets: [],
+        stats: { packetsReceived: 0, packetsSent: 0, errors: 0 },
+      },
+      {
+        id: "pc-001",
+        type: "pc",
+        name: "PC1",
+        position: { x: 250, y: 450 },
+        config: {
+          ip: "10.0.0.2",
+          subnet: "255.255.255.0",
+          gateway: "10.0.0.1",
+          ports: 1,
+          status: "active",
+          routingTable: null,
+          macTable: null,
+          interfaces: ["eth0"],
+        },
+        packets: [],
+        stats: { packetsReceived: 0, packetsSent: 0, errors: 0 },
+      },
+      {
+        id: "pc-002",
+        type: "pc",
+        name: "PC2",
+        position: { x: 550, y: 450 },
+        config: {
+          ip: "10.0.0.3",
+          subnet: "255.255.255.0",
+          gateway: "10.0.0.1",
+          ports: 1,
+          status: "active",
+          routingTable: null,
+          macTable: null,
+          interfaces: ["eth0"],
+        },
+        packets: [],
+        stats: { packetsReceived: 0, packetsSent: 0, errors: 0 },
+      },
+    ],
+    connections: [
+      {
+        id: "conn-001",
+        source: "router-001",
+        target: "switch-001",
+        status: "active",
+        bandwidth: 1000,
+        latency: 1,
+        packets: [],
+      },
+      {
+        id: "conn-002",
+        source: "switch-001",
+        target: "pc-001",
+        status: "active",
+        bandwidth: 100,
+        latency: 2,
+        packets: [],
+      },
+      {
+        id: "conn-003",
+        source: "switch-001",
+        target: "pc-002",
+        status: "active",
+        bandwidth: 100,
+        latency: 2,
+        packets: [],
+      },
+    ],
+    metadata: {
+      version: "2.0",
+      created: new Date().toISOString(),
+      description: "Basic LAN setup with router, switch, and end devices",
+    },
+  },
+
+  multiSubnetRouter: {
+    name: "Multi-Subnet Router Network",
+    description: "Two separate subnets connected via a central Linux Router",
+    devices: [
+      {
+        id: "router-sub",
+        type: "router",
+        name: "Core-Router",
+        position: { x: 400, y: 180 },
+        config: {
+          ip: "10.0.1.1",
+          subnet: "255.255.255.0",
+          gateway: "",
+          ports: 4,
+          status: "active",
+          routingTable: [],
+          interfaces: ["eth0", "eth1"],
+        },
+        packets: [],
+        stats: { packetsReceived: 0, packetsSent: 0, errors: 0 },
+      },
+      {
+        id: "switch-lan1",
+        type: "switch",
+        name: "Switch-Subnet1",
+        position: { x: 220, y: 320 },
+        config: { ip: "", ports: 8, status: "active" },
+        packets: [],
+        stats: { packetsReceived: 0, packetsSent: 0, errors: 0 },
+      },
+      {
+        id: "switch-lan2",
+        type: "switch",
+        name: "Switch-Subnet2",
+        position: { x: 580, y: 320 },
+        config: { ip: "", ports: 8, status: "active" },
+        packets: [],
+        stats: { packetsReceived: 0, packetsSent: 0, errors: 0 },
+      },
+      {
+        id: "pc-sub1",
+        type: "pc",
+        name: "Host-Subnet1",
+        position: { x: 150, y: 460 },
+        config: {
+          ip: "10.0.1.10",
+          subnet: "255.255.255.0",
+          gateway: "10.0.1.1",
+          status: "active",
+        },
+        packets: [],
+        stats: { packetsReceived: 0, packetsSent: 0, errors: 0 },
+      },
+      {
+        id: "pc-sub2",
+        type: "pc",
+        name: "Host-Subnet2",
+        position: { x: 650, y: 460 },
+        config: {
+          ip: "10.0.2.10",
+          subnet: "255.255.255.0",
+          gateway: "10.0.2.1",
+          status: "active",
+        },
+        packets: [],
+        stats: { packetsReceived: 0, packetsSent: 0, errors: 0 },
+      },
+    ],
+    connections: [
+      { id: "c-r1", source: "router-sub", target: "switch-lan1", status: "active", bandwidth: 1000 },
+      { id: "c-r2", source: "router-sub", target: "switch-lan2", status: "active", bandwidth: 1000 },
+      { id: "c-p1", source: "switch-lan1", target: "pc-sub1", status: "active", bandwidth: 100 },
+      { id: "c-p2", source: "switch-lan2", target: "pc-sub2", status: "active", bandwidth: 100 },
+    ],
+    metadata: {
+      version: "2.0",
+      description: "Demonstrates inter-subnet routing across 10.0.1.0/24 and 10.0.2.0/24",
+    },
+  },
+};
+
+export const getRandomSampleNetwork = () => {
+  const networks = Object.values(SAMPLE_NETWORKS);
+  return networks[Math.floor(Math.random() * networks.length)];
+};
+
+export const getSampleNetworkByName = (name) => {
+  return SAMPLE_NETWORKS[name] || null;
+};
