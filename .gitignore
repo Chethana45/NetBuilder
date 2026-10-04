@@ -1,0 +1,66 @@
+# ===========================
+# NetBuilder — Root .gitignore
+# ===========================
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.so
+venv/
+env/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.Python
+
+# Secrets & Environment
+.env
+.env.*
+!.env.example
+*.secret
+secrets.json
+credentials.json
+
+# Node / Frontend
+node_modules/
+client/node_modules/
+client/dist/
+client/build/
+client/.cache/
+client/out/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS Files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test & Coverage
+coverage/
+.nyc_output/
+*.snap
+test-output/
+
+# Misc
+*.bak
+*.tmp
+*.temp
+*.orig
+*.tgz
